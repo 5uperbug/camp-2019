@@ -598,8 +598,8 @@ var LyricsComponent = /** @class */ (function () {
         var _this = this;
         this.title = this.injectedData.title;
         this.http.get(this.injectedData.src, { responseType: 'text' }).subscribe(function (data) {
-            console.log(data);
             setTimeout(function () {
+                console.log(data);
                 _this.content = data;
             }, 100);
         });
