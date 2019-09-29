@@ -589,19 +589,19 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var LyricsComponent = /** @class */ (function () {
-    function LyricsComponent(bottomSheetRef, http, injectedData) {
+    function LyricsComponent(bottomSheetRef, http, cdRef, injectedData) {
         this.bottomSheetRef = bottomSheetRef;
         this.http = http;
+        this.cdRef = cdRef;
         this.injectedData = injectedData;
     }
     LyricsComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.title = this.injectedData.title;
         this.http.get(this.injectedData.src, { responseType: 'text' }).subscribe(function (data) {
-            setTimeout(function () {
-                console.log(data);
-                _this.content = data;
-            }, 100);
+            console.log(data);
+            _this.content = data;
+            _this.cdRef.detectChanges();
         });
     };
     LyricsComponent.prototype.close = function (event) {
@@ -619,9 +619,10 @@ var LyricsComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./lyrics.component.html */ "./src/app/songbook/lyrics/lyrics.component.html"),
             styles: [__webpack_require__(/*! ./lyrics.component.scss */ "./src/app/songbook/lyrics/lyrics.component.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__param"](2, Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"])(_angular_material__WEBPACK_IMPORTED_MODULE_2__["MAT_BOTTOM_SHEET_DATA"])),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__param"](3, Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"])(_angular_material__WEBPACK_IMPORTED_MODULE_2__["MAT_BOTTOM_SHEET_DATA"])),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_2__["MatBottomSheetRef"],
-            _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"], Object])
+            _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"],
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectorRef"], Object])
     ], LyricsComponent);
     return LyricsComponent;
 }());
