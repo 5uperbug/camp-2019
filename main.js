@@ -555,7 +555,7 @@ var ScheduleComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar color=\"primary\" class=\"mat-elevation-z6 toolbar\">\n  <mat-toolbar-row>\n    <button mat-icon-button (click)=\"close()\">\n      <mat-icon>arrow_back</mat-icon>\n    </button>\n    <span style=\"width: 80%;\n    text-overflow: ellipsis;\n    word-break: break-all;\n    overflow: hidden;\">{{title}}</span>\n  </mat-toolbar-row>\n</mat-toolbar>\n\n<div class=\"lyrics-container\" *ngIf=\"content\">\n  <markdown [data]=\"content\" ngPreserveWhitespaces=\"true\">\n  </markdown>\n</div>\n"
+module.exports = "<mat-toolbar color=\"primary\" class=\"mat-elevation-z6 toolbar\">\n  <mat-toolbar-row>\n    <button mat-icon-button (click)=\"close()\">\n      <mat-icon>arrow_back</mat-icon>\n    </button>\n    <span style=\"width: 80%;\n    text-overflow: ellipsis;\n    word-break: break-all;\n    overflow: hidden;\">{{title}}</span>\n  </mat-toolbar-row>\n</mat-toolbar>\n\n<div class=\"lyrics-container\" *ngIf=\"content\">\n  <markdown [data]=\"content\" ngPreserveWhitespaces=\"true\"></markdown>\n</div>\n\n<div *ngIf=\"!content\" class=\"loading-container\">\n  <div class=\"loading\">\n    <div></div>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -599,7 +599,9 @@ var LyricsComponent = /** @class */ (function () {
         this.title = this.injectedData.title;
         this.http.get(this.injectedData.src, { responseType: 'text' }).subscribe(function (data) {
             console.log(data);
-            _this.content = data;
+            setTimeout(function () {
+                _this.content = data;
+            }, 100);
         });
     };
     LyricsComponent.prototype.close = function (event) {
