@@ -393,6 +393,8 @@ MIT
 
 @angular/material/button
 
+@angular/material/expansion
+
 @angular/material/toolbar
 
 @angular/material/icon
